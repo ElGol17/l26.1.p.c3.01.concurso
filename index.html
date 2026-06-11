@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concurso Aspirantes - Vista Directiva</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {background-color: rgb(255, 255, 255)}
+        .tabla-aspirantes {width: 80%; margin: 0 auto;}
+        .form-label-small {font-size: 0.85rem; margin-bottom: 0.2rem;}
+    </style>
+</head>
+<body>
+    <div id="main" class="p-4">
+        <section id="concurso">
+            <div class="main-header justify-content-between align-items-center d-flex py-4 px-4">                 
+                <div class="d-flex flex-column gap-3">
+                    <div>
+                        <h2 class="mb-0 fw-bold">Vista Administrativa</h2>    
+                        <h5 class="mb-0 fw-bold">Concurso - Global Innovators Corp.</h5>
+                    </div>
+                    <div>
+                        <button id="main_btNuevoAspirante" class="btn btn-success btn-nuevo-aspirante text-white btn-lg">Registrar Aspirante</button>
+                    </div>
+                </div>
+                <div>
+                    <span class="h3 mb-0 fw-bold">TeamZev - UCLA DCyT</span>
+                </div>
+            </div>           
+        </section>
+        <br>
+        <h2 class="text fw-bold">Aspirantes registrados en esta sesión:</h2>
+        <br>
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="table table-primary">
+                <tr>
+                    <th class="text-start">Participante(s)</th>
+                    <th class="text-center">Documento de Identidad</th>
+                    <th class="text-center">Prueba de Credenciales (10%)</th>
+                    <th class="text-center">Prueba de Conocimientos (60%)</th>
+                    <th class="text-center">Prueba de Aptitudes (30%)</th>
+                    <th class="text-center">Nota Definitiva</th>
+                    <th class="text-end">Veredicto</th>
+                </tr>
+            </thead>
+            <tbody class="table table-striped" id="main_tbAspirantes">
+            </tbody>
+        </table>
+    </div>
+    <div id="aspirante" class="container mt-5" hidden>
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-header bg-dark text-white p-3">
+                <div class="card-header bg-dark text-white p-3 d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">Registro de Aspirante</h3>
+                    <div class="d-flex gap-2">
+                        <input type="number" id="aspirante_inCedulaBuscar" class="form-control form-control-sm w-auto" placeholder="Cédula a buscar">
+                        <button id="aspirante_btBuscar" class="btn btn-outline-light btn-sm">Cargar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="fw-bold border-bottom pb-2">Información Básica</h5>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4"><label class="form-label">Nombre:</label><input type="text" id="aspirante_inNombre" class="form-control" placeholder="Ej: José"></div>
+                    <div class="col-md-4"><label class="form-label">Apellido:</label><input type="text" id="aspirante_inApellido" class="form-control" placeholder="Ej: Pérez"></div>
+                    <div class="col-md-4"><label class="form-label">Cédula:</label><input type="number" id="aspirante_inCedula" class="form-control" placeholder="Ej: 12345678"></div>
+                </div>
+
+                <div class="card mb-4 border-dark">
+                    <div class="fw-bold card-header bg-dark text-white">Formatos N° CO-5 - CO-5.3</div>
+                    <div class="card-body">
+                        
+                        <div class="mb-4">
+                            <h6 class="fw-bold border-bottom pb-1">Formato N° CO-5 — Evaluación de Credenciales de Mérito a Nivel de Estudios de Postgrado</h6>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Postgrado en el área de especialidad objeto de la convocatoria, con trabajo o tesis de grado presentada y aprobada (0-25):</label>
+                                    <input type="number" class="aspirante_inFormatoCO5 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Otros estudios de postgrado universitario no vinculados con el área objeto de selección, con trabajo o tesis de grado (0-20):</label>
+                                    <input type="number" class="aspirante_inFormatoCO5 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Estudios o cursos de postgrado no conducentes a grado académico. Cursos de ampliación, actualización o perfeccionamiento (0-6):</label>
+                                    <input type="number" class="aspirante_inFormatoCO5 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Méritos y reconocimientos obtenidos por el trabajo de grado presentados, certificados por el jurado evaluador (0-5):</label>
+                                    <input type="number" class="aspirante_inFormatoCO5 form-control form-control-sm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h6 class="fw-bold border-bottom pb-1">Formato N° CO-5.1 — Evaluación de Credenciales de Mérito a Nivel de Estudios de Pregrado</h6>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Título universitario en el área de especialidad objeto de la convocatoria (según promedio académico) (0-25)</label>
+                                    <input type="number" class="aspirante_inFormatoCO51 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Actividad universitaria como preparador/asistente de investigación/extensión en el área objeto (mínimo 6 meses) (0-10)</label>
+                                    <input type="number" class="aspirante_inFormatoCO51 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Actividad universitaria similar en otras áreas distintas (mínimo 6 meses, máximo 3 actividades) (0-3)</label>
+                                    <input type="number" class="aspirante_inFormatoCO51 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Diploma por promedio sobresaliente (19,0 a 20) en el área objeto de la convocatoria (0-5)</label>
+                                    <input type="number" class="aspirante_inFormatoCO51 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Diploma por promedio sobresaliente en otras áreas (1 punto por diploma, máximo 3) (0-3)</label>
+                                    <input type="number" class="aspirante_inFormatoCO51 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Diploma por reconocimientos universitarios en investigación (1 punto por diploma, máximo 3) (0-3)</label>
+                                    <input type="number" class="aspirante_inFormatoCO51 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Diploma por reconocimientos universitarios en extensión (1 punto por diploma, máximo 3) (0-3)</label>
+                                    <input type="number" class="aspirante_inFormatoCO51 form-control form-control-sm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h6 class="fw-bold border-bottom pb-1">Formato N° CO-5.2 — Evaluación de Producción Científica</h6>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Libros o textos relacionados con el área objeto de la convocatoria, con comité editorial (autor único) (0-15)</label>
+                                    <input type="number" class="aspirante_inFormatoCO52 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Libros o textos relacionados con el área objeto de la convocatoria, sin comité editorial (autor único) (0-12)</label>
+                                    <input type="number" class="aspirante_inFormatoCO52 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Artículos científicos en revistas arbitradas o indexadas relacionadas con el área (autor único) (0-10)</label>
+                                    <input type="number" class="aspirante_inFormatoCO52 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Artículos científicos en revistas arbitradas no indexadas relacionadas con el área (autor único) (0-6)</label>
+                                    <input type="number" class="aspirante_inFormatoCO52 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Artículos científicos en revistas no arbitradas relacionadas con el área (autor único) (0-4)</label>
+                                    <input type="number" class="aspirante_inFormatoCO52 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Otros artículos científicos con respaldo institucional/editorial en áreas no relacionadas (autor único) (0-3)</label>
+                                    <input type="number" class="aspirante_inFormatoCO52 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Artículos en memorias de congresos o eventos científicos, conferencias y resúmenes (internacional, según baremo) (0-10)</label>
+                                    <input type="number" class="aspirante_inFormatoCO52 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Ponencias o presentación de trabajos en eventos científicos (internacional, según baremo) (0-6)</label>
+                                    <input type="number" class="aspirante_inFormatoCO52 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Patentes registradas (internacional) (0-15)</label>
+                                    <input type="number" class="aspirante_inFormatoCO52 form-control form-control-sm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h6 class="fw-bold border-bottom pb-1">Formato N° CO-5.3 — Méritos y Experiencia Académica y Profesional</h6>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Actividades comprobables en Docencia, Investigación o Extensión en el área objeto (hasta 6 años, 2 pts/año) (0-12)</label>
+                                    <input type="number" class="aspirante_inFormatoCO53 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Premios o reconocimientos a la docencia, investigación o extensión (2 puntos por premio, máximo 4) (0-8)</label>
+                                    <input type="number" class="aspirante_inFormatoCO53 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Experiencia profesional en el área objeto de la convocatoria (hasta 6 años, 1 pto/cada 6 meses) (0-6)</label>
+                                    <input type="number" class="aspirante_inFormatoCO53 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Experiencia profesional en áreas distintas al área objeto (hasta 3 años, 0.5 ptos/cada 6 meses) (0-3)</label>
+                                    <input type="number" class="aspirante_inFormatoCO53 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Premios o distinciones a la labor profesional (máximo 4 premios: estadal 0.5 ptos, nacional 0.75 ptos, internacional 1 pto) (0-4)</label>
+                                    <input type="number" class="aspirante_inFormatoCO53 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Dirección de institutos/departamentos de investigación o extensión (hasta 3 años, 1 pto/cada 6 meses) (0-6)</label>
+                                    <input type="number" class="aspirante_inFormatoCO53 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Pasantías profesionales certificadas en el área objeto (máximo 4 pasantías, 0.5 pto/cada 6 meses) (0-4)</label>
+                                    <input type="number" class="aspirante_inFormatoCO53 form-control form-control-sm">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label form-label-small">Pasantías certificadas en otras áreas (máximo 2 pasantías, 0.5 pto/cada 6 meses) (0-2)</label>
+                                    <input type="number" class="aspirante_inFormatoCO53 form-control form-control-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 border-dark">
+                    <div class="card-header bg-dark text-white fw-bold">Formato N° CO-8: Exámenes</div>
+                    <div class="card-body row">
+                        <div class="col-md-6"><label class="form-label">Nota Examen Escrito (0-20)</label><input type="number" id="aspirante_inNotaExamenEscritoCO8" class="form-control"></div>
+                        <div class="col-md-6"><label class="form-label">Nota Examen Oral/Práctico/Mixto (0-20)</label><input type="number" id="aspirante_inNotaExamenPracticoCO8" class="form-control"></div>
+                    </div>
+                </div>
+                <div class="card mb-4 border-dark">
+                    <div class="card-header bg-dark text-white fw-bold">Formato N° CO-10 / Escala (1-5)</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm align-middle">
+                                <thead class="table-light text-center">
+                                    <tr>
+                                        <th class="text-start">Aspectos a Evaluar</th>
+                                        <th>Jurado A</th>
+                                        <th>Jurado B</th>
+                                        <th>Jurado C</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class=" small">Apariencia física y presentación profesional</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Conocimiento y dominio del tema</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Estructura y presentación del tema</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Ritmo y claridad de la exposición</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Vocabulario y expresión lingüística utilizada</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Ejemplificación y pertinencia de ejemplos</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Dicción y pronunciación</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Volumen y modulación de la voz</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Dominio del grupo y capacidad de comunicación</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Equilibrio emocional y control del proceso</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Gesticulación y expresión corporal</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" small">Uso y combinación de recursos de apoyo</td>
+                                        <td><input type="number" class="aspirante_inJuradoAFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoBFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                        <td><input type="number" class="aspirante_inJuradoCFormatoCO10 form-control form-control-sm" min="1" max="5"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <button id="aspirante_btCancelar" class="btn btn-outline-secondary">Cancelar</button>
+                    <button id="aspirante_btAceptar" class="btn btn-primary px-4">Guardar Registro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="module">
+    import Cl_vConcursoAdmin from "./dist/views/Cl_vConcursoAdmin.js";
+    import Cl_vAspirante from "./dist/views/Cl_vAspirante.js";
+    import Cl_cAspirante from "./dist/controllers/Cl_cAspirante.js";
+    import Cl_cConcursoAdmin from "./dist/controllers/Cl_cConcursoAdmin.js";
+
+    let vConcurso = new Cl_vConcursoAdmin(),
+        vAspirante = new Cl_vAspirante(),
+        cAspirante = new Cl_cAspirante(vAspirante),
+        cConcurso = new Cl_cConcursoAdmin(vConcurso, cAspirante);
+</script>
+</html>

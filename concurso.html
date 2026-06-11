@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concurso Aspirantes - Vista Directiva</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .tabla-aspirantes { width: 90%; margin: 0 auto; }
+        .main-container { background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div id="main" class="p-4">
+        <section id="concurso">
+            <div class="main-header d-flex justify-content-between align-items-center py-4 px-4">                 
+                <div class="d-flex flex-column gap-3">
+                    <div>
+                        <h2 class="mb-0 fw-bold">Vista Directiva</h2>    
+                        <h5 class="mb-0 fw-bold">Concurso - Global Innovators Corp.</h5>
+                    </div>
+                    <div>
+                        <button id="concurso_btMostrarAspirantes" class="btn btn-primary text-white btn-lg ms-2">Ver Lista de Aspirantes</button>
+                    </div>
+                </div>
+                <div>
+                    <span class="h3 mb-0 fw-bold">TeamZev - UCLA DCyT</span>
+                </div>
+            </div>
+            </section>
+
+        <section id="aspirantes" hidden class="main-container p-4 mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Resumen de Aspirantes</h2>
+                <button id="aspirantes_btVolver" class="btn btn-outline-secondary">Volver al Inicio</button>
+            </div>
+            <div id="estadisticas_generales" class="alert alert-primary d-flex align-items-center mb-4 shadow-sm border-0">
+                    <div>
+                        <h5 class="mb-0 fw-bold text-primary-emphasis">Rendimiento Global del Concurso</h5>
+                        <span class="fs-6 text-dark">El porcentaje general de calificación es: <strong id="txtPorcentaje">0.00%</strong></span>
+                    </div>
+                </div>
+            <div class="row align-items-center mb-4 g-3">
+                <div class="col-auto">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="aspirantes_chkSoloAprobados">
+                        <label class="form-check-label" for="aspirantes_chkSoloAprobados">Solo Aprobados</label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button id="aspirantes_btRecargar" class="btn btn-primary">Recargar Datos</button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="aspirantes_tblAspirantes" class="table table-striped table-hover align-middle border">
+                    <thead class="table table-dark">
+                        <tr>
+                            <th class="text-start">Participante(s)</th>
+                            <th class="text-center">Documento de Identidad</th>
+                            <th class="text-center">Prueba de Credenciales (10%)</th>
+                            <th class="text-center">Prueba de Conocimientos (60%)</th>
+                            <th class="text-center">Prueba de Aptitudes (30%)</th>
+                            <th class="text-center">Nota Definitiva</th>
+                            <th class="text-end">Veredicto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+            <div id="aspirantes_cntReportes" class="mt-5 border-top pt-4"></div>
+        </section>
+    </div>
+
+    <script type="module">
+        import Cl_vConcursoDirectiva from "./dist/views/Cl_vConcursoDirectiva.js";
+        import Cl_vAspirantes from "./dist/views/Cl_vAspirantes.js";
+        import Cl_cConcursoDirectiva from "./dist/controllers/Cl_cConcursoDirectiva.js";
+        const vConcurso = new Cl_vConcursoDirectiva();
+        new Cl_cConcursoDirectiva({ vista: vConcurso });
+    </script>
+</body>
+</html>
