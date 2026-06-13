@@ -13,9 +13,15 @@ export default class Cl_cConcurso{
         this.vConcurso.onNuevoAspirante(() => this.procesarNuevoAspirante());
     }
     procesarNuevoAspirante(): void{
-        this.cAspirante.solicitarAspirante(aspirante =>{
+        this.cAspirante.solicitarAspirante((aspirante) =>{
             if(aspirante !== null){
-                this.mConcurso.agregarAspirante(aspirante);
+                const indexExistente = this.mConcurso.aspirantes.findIndex(aspiranteExistente => aspiranteExistente.cedula === aspirante.cedula);
+                if (indexExistente !== -1) {
+                    this.mConcurso.aspirantes[indexExistente] = aspirante;
+                }
+                else{
+                    this.mConcurso.agregarAspirante(aspirante);
+                }
                 this.vConcurso.mostrarAspirantes({aspirantes: this.mConcurso.aspirantes});
             }
         })

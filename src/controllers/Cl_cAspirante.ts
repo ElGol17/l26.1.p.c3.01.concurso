@@ -39,39 +39,6 @@ export default class Cl_cAspirante{
         this.editandoId = resultado.data.id;
         this.aspiranteOriginal = resultado.data;
     }
-    /**
-     
-    async btAceptarOnClick(){
-        let resultado = new Cl_mAspirante({
-            nombre: this.vista.nombre,
-            apellido: this.vista.apellido,
-            cedula: this.vista.cedula,
-            notaExamenEscritoCO8: this.vista.notaExamenEscritoCO8,
-            notaExamenPracticoCO8: this.vista.notaExamenPracticoCO8,
-        })
-        resultado.ptsFormatoCO5 = this.vista.ptsFormatoCO5;
-        resultado.ptsFormatoCO51 = this.vista.ptsFormatoCO51;
-        resultado.ptsFormatoCO52 = this.vista.ptsFormatoCO52;
-        resultado.ptsFormatoCO53 = this.vista.ptsFormatoCO53;
-        resultado.ptsJuradoAFormatoCO10 = this.vista.ptsJuradoAFormatoCO10;
-        resultado.ptsJuradoBFormatoCO10 = this.vista.ptsJuradoBFormatoCO10;
-        resultado.ptsJuradoCFormatoCO10 = this.vista.ptsJuradoCFormatoCO10;
-        let checkExiste = await Cl_sAspirante.existeAspirante(resultado.cedula);
-        if (checkExiste.ok === false){
-            alert("Error: No se pudo establecer conexión con el servidor. Intente nuevamente.");
-            return;
-        }
-        if (checkExiste.existe === true){
-            alert("Error: Ya existe un aspirante registrado con la cédula ingresada.");
-            return;
-        }
-        Cl_sAspirante.guardarAspirante(resultado).then((resultado) => {
-            alert(resultado.mensaje);
-        });
-        this.callback(resultado);
-        this.vista.ocultar();
-    }
-*/
     private async btAceptarOnClick(): Promise<void> {
         let aspirante = new Cl_mAspirante({
             nombre: this.vista.nombre,

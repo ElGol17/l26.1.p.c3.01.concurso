@@ -5,21 +5,29 @@ export default class Cl_sAspirante extends Cl_sMockApiAdmin{
     static async guardarAspirante(nuevoAspirante: Cl_mAspirante): Promise<{ ok: boolean; mensaje: string }>{
         return await this.post(nuevoAspirante);
     }
-    static async existeAspirante(cedula: number): Promise<{ ok: boolean; existe: boolean }>{
-        let resultado = await this.existeCedula({ tabla: "aspirantes", cedula });
-        return resultado;
+    static async existeAspirante(cedula: number): Promise<{ ok: boolean; existe: boolean }> {
+        try {
+            const response = await fetch(`${this.apiURL}?tabla=aspirante`);
+            if (!response.ok) return { ok: false, existe: false };
+            const data = await response.json();
+            const existe = data.some((item: any) => item.cedula === cedula);
+            return { ok: true, existe };
+        } catch (error) {
+            return { ok: false, existe: false };
+        }
     }
     static async obtenerPorCedula(cedula: number): Promise<{ ok: boolean; data: any | null }> {
         try {
-            const response = await fetch(`${this.apiURL}?tabla=aspirante&cedula=${cedula}`);
+            const response = await fetch(`${this.apiURL}?tabla=aspirante`);
             if (!response.ok) return { ok: false, data: null };
             const data = await response.json();
-            if (data.length === 0) return { ok: true, data: null };
-            return { ok: true, data: data[0] };
+            const found = data.find((item: any) => item.cedula === cedula);
+            return { ok: true, data: found || null };
         } catch (error) {
             return { ok: false, data: null };
         }
     }
+
     static async actualizarAspirante(aspirante: Cl_mAspirante, idMockApi: string): Promise<{ ok: boolean; mensaje: string }> {
         try {
             const response = await fetch(`${this.apiURL}/${idMockApi}`, {

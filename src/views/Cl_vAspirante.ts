@@ -95,61 +95,62 @@ export default class Cl_vAspirante implements I_vAspirante{
     cargarDatos(aspirante: Cl_mAspirante): void {
         this.inNombre.value = aspirante.nombre || "";
         this.inApellido.value = aspirante.apellido || "";
-        this.inCedula.value = aspirante.cedula.toString() || "0";
-        this.inNotaExamenEscritoCO8.value = aspirante.notaExamenEscritoCO8?.toString() || "0";
-        this.inNotaExamenPracticoCO8.value = aspirante.notaExamenPracticoCO8?.toString() || "0";
+        this.inCedula.value = aspirante.cedula.toString() || "";
+        this.inNotaExamenEscritoCO8.value = aspirante.notaExamenEscritoCO8?.toString() || "";
+        this.inNotaExamenPracticoCO8.value = aspirante.notaExamenPracticoCO8?.toString() || "";
 
         if (aspirante.ptsFormatoCO5) {
             this.inFormatoCO5.forEach((input, idx) => {
-                input.value = aspirante.ptsFormatoCO5[idx]?.toString() || "0";
+                input.value = aspirante.ptsFormatoCO5[idx]?.toString() || "";
             });
         }
         if (aspirante.ptsFormatoCO51) {
             this.inFormatoCO51.forEach((input, idx) => {
-                input.value = aspirante.ptsFormatoCO51[idx]?.toString() || "0";
+                input.value = aspirante.ptsFormatoCO51[idx]?.toString() || "";
             });
         }
         if (aspirante.ptsFormatoCO52) {
             this.inFormatoCO52.forEach((input, idx) => {
-                input.value = aspirante.ptsFormatoCO52[idx]?.toString() || "0";
+                input.value = aspirante.ptsFormatoCO52[idx]?.toString() || "";
             });
         }
         if (aspirante.ptsFormatoCO53) {
             this.inFormatoCO53.forEach((input, idx) => {
-                input.value = aspirante.ptsFormatoCO53[idx]?.toString() || "0";
+                input.value = aspirante.ptsFormatoCO53[idx]?.toString() || "";
             });
         }
         if (aspirante.ptsJuradoAFormatoCO10) {
             this.inJuradoAFormatoCO10.forEach((input, idx) => {
-                input.value = aspirante.ptsJuradoAFormatoCO10[idx]?.toString() || "1";
+                input.value = aspirante.ptsJuradoAFormatoCO10[idx]?.toString() || "";
             });
         }
         if (aspirante.ptsJuradoBFormatoCO10) {
             this.inJuradoBFormatoCO10.forEach((input, idx) => {
-                input.value = aspirante.ptsJuradoBFormatoCO10[idx]?.toString() || "1";
+                input.value = aspirante.ptsJuradoBFormatoCO10[idx]?.toString() || "";
             });
         }
         if (aspirante.ptsJuradoCFormatoCO10) {
             this.inJuradoCFormatoCO10.forEach((input, idx) => {
-                input.value = aspirante.ptsJuradoCFormatoCO10[idx]?.toString() || "1";
+                input.value = aspirante.ptsJuradoCFormatoCO10[idx]?.toString() || "";
             });
         }
     }
     mostrar(): void{
         this.inNombre.value = "";
         this.inApellido.value = "";
-        this.inCedula.value = "0";
-        this.inNotaExamenEscritoCO8.value = "0";
-        this.inNotaExamenPracticoCO8.value = "0";
+        this.inCedula.value = "";
+        this.inCedulaBuscar.value = "";
+        this.inNotaExamenEscritoCO8.value = "";
+        this.inNotaExamenPracticoCO8.value = "";
 
-        this.inFormatoCO5.forEach(input => input.value = "0");
-        this.inFormatoCO51.forEach(input => input.value = "0");
-        this.inFormatoCO52.forEach(input => input.value = "0");
-        this.inFormatoCO53.forEach(input => input.value = "0");
+        this.inFormatoCO5.forEach(input => input.value = "");
+        this.inFormatoCO51.forEach(input => input.value = "");
+        this.inFormatoCO52.forEach(input => input.value = "");
+        this.inFormatoCO53.forEach(input => input.value = "");
 
-        this.inJuradoAFormatoCO10.forEach(input => input.value = "1");
-        this.inJuradoBFormatoCO10.forEach(input => input.value = "1");
-        this.inJuradoCFormatoCO10.forEach(input => input.value = "1");        
+        this.inJuradoAFormatoCO10.forEach(input => input.value = "");
+        this.inJuradoBFormatoCO10.forEach(input => input.value = "");
+        this.inJuradoCFormatoCO10.forEach(input => input.value = "");        
         this.vista.hidden = false;
     }
     ocultar(): void{

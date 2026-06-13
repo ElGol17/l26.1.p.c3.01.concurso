@@ -7,6 +7,8 @@ export default class Cl_vAspirantes implements I_vAspirantes{
     btRecargar: HTMLButtonElement;
     btVolver: HTMLButtonElement;
     chkSoloAprobados: HTMLInputElement;
+    chkSolo25CO5: HTMLInputElement;
+    chkSoloNoEvaluadosAptitudes: HTMLInputElement;
     tblAspirantes: HTMLTableElement;
     cntReportes: HTMLDivElement;
     constructor(){
@@ -14,6 +16,8 @@ export default class Cl_vAspirantes implements I_vAspirantes{
         this.btRecargar = document.getElementById("aspirantes_btRecargar") as HTMLButtonElement;
         this.btVolver = document.getElementById("aspirantes_btVolver") as HTMLButtonElement;
         this.chkSoloAprobados = document.getElementById("aspirantes_chkSoloAprobados") as HTMLInputElement;
+        this.chkSolo25CO5 = document.getElementById("aspirantes_chkSolo25CO5") as HTMLInputElement;
+        this.chkSoloNoEvaluadosAptitudes = document.getElementById("aspirantes_chkSoloNoEvaluadosAptitudes") as HTMLInputElement;
         this.tblAspirantes = document.getElementById("aspirantes_tblAspirantes") as HTMLTableElement;
         this.cntReportes = document.getElementById("aspirantes_cntReportes") as HTMLDivElement;
         this.chkSoloAprobados.onchange = () => this.onChangeSoloAprobados(() => {});
@@ -21,8 +25,38 @@ export default class Cl_vAspirantes implements I_vAspirantes{
     get soloAprobados(): boolean{ 
         return this.chkSoloAprobados.checked; 
     }
+    get solo25CO5(): boolean{
+        return this.chkSolo25CO5.checked;
+    }
+    get soloNoEvaluadosAptitudes(): boolean{
+        return this.chkSoloNoEvaluadosAptitudes.checked;
+    }
     onChangeSoloAprobados(callback: () => void): void{ 
         this.chkSoloAprobados.onchange = callback;
+    }
+    onChangeSolo25CO5(callback: () => void): void{
+        this.chkSolo25CO5.onchange = callback;
+    }
+    onChangeSoloNoEvaluadosAptitudes(callback: () => void): void{
+        this.chkSoloNoEvaluadosAptitudes.onchange = callback;
+    }
+    deshabilitarChkSoloAprobados(): void{
+        this.chkSoloAprobados.disabled = true;
+    }
+    habilitarChkSoloAprobados(): void{
+        this.chkSoloAprobados.disabled = false;
+    }
+    deshabilitarChkSolo25CO5(): void{
+        this.chkSolo25CO5.disabled = true;
+    }
+    habilitarChkSolo25CO5(): void{
+        this.chkSolo25CO5.disabled = false;
+    }
+    deshabilitarChkSoloNoEvaluadosAptitudes(): void{
+        this.chkSoloNoEvaluadosAptitudes.disabled = true;
+    }
+    habilitarChkSoloNoEvaluadosAptitudes(): void{
+        this.chkSoloNoEvaluadosAptitudes.disabled = false;
     }
     onRecargar(callback: () => void): void{ 
         this.btRecargar.onclick = callback; 

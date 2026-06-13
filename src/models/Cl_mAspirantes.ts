@@ -36,6 +36,35 @@ export default class Cl_mAspirantes{
         }
     return aspirantesFiltrados;
     }
+    getAspirantesFiltrados(soloAprobados: boolean = false, solo25CO5: boolean = false, soloNoEvaluadosAptitudes: boolean = false): Cl_mAspirante[]{
+        let aspirantesFiltrados: Cl_mAspirante[] = [];
+        switch (true){
+            case soloAprobados:
+                this.aspirantes.forEach((aspirante) => {
+                    if (aspirante.veredicto() === "Aprobado") {
+                        aspirantesFiltrados.push(aspirante);
+                    }
+                });
+                break;
+            case solo25CO5:
+                this.aspirantes.forEach((aspirante) => {
+                    if (aspirante.calificacionFormatoCO5() >= 25) {
+                        aspirantesFiltrados.push(aspirante);
+                    }
+                });
+                break;
+            case soloNoEvaluadosAptitudes:
+                this.aspirantes.forEach((aspirante) => {
+                    if (aspirante.notaPruebaAptitudes() === 0) {
+                        aspirantesFiltrados.push(aspirante);
+                    }
+                });
+                break;
+            case (!soloAprobados && !solo25CO5 && !soloNoEvaluadosAptitudes):
+                aspirantesFiltrados = this.aspirantes;
+        }
+        return aspirantesFiltrados;
+    }
     porcentajeCalificacionGeneral(): number {
         let cantidadAspirantes = this.aspirantes.length;
         if (cantidadAspirantes === 0) return 0;
