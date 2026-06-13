@@ -38,26 +38,40 @@ export default class Cl_mAspirante{
     get cedula(): number{
         return this._cedula;
     }
-    set ptsFormatoCO5(ptsFormatoCO5: number[]){
-        this._ptsFormatoCO5 = ptsFormatoCO5;
+    set ptsFormatoCO5(ptsFormatoCO5: number[] | undefined) {
+        this._ptsFormatoCO5 = Array.isArray(ptsFormatoCO5) ? ptsFormatoCO5 : [];
+    }
+
+    set ptsFormatoCO51(ptsFormatoCO51: number[] | undefined) {
+        this._ptsFormatoCO51 = Array.isArray(ptsFormatoCO51) ? ptsFormatoCO51 : [];
+    }
+
+    set ptsFormatoCO52(ptsFormatoCO52: number[] | undefined) {
+        this._ptsFormatoCO52 = Array.isArray(ptsFormatoCO52) ? ptsFormatoCO52 : [];
+    }
+
+    set ptsFormatoCO53(ptsFormatoCO53: number[] | undefined) {
+        this._ptsFormatoCO53 = Array.isArray(ptsFormatoCO53) ? ptsFormatoCO53 : [];
+    }
+
+    set ptsJuradoAFormatoCO10(ptsJuradoAFormatoCO10: number[] | undefined) {
+        this._ptsJuradoAFormatoCO10 = Array.isArray(ptsJuradoAFormatoCO10) ? ptsJuradoAFormatoCO10 : [];
+    }
+
+    set ptsJuradoBFormatoCO10(ptsJuradoBFormatoCO10: number[] | undefined) {
+        this._ptsJuradoBFormatoCO10 = Array.isArray(ptsJuradoBFormatoCO10) ? ptsJuradoBFormatoCO10 : [];
+    }
+
+    set ptsJuradoCFormatoCO10(ptsJuradoCFormatoCO10: number[] | undefined) {
+        this._ptsJuradoCFormatoCO10 = Array.isArray(ptsJuradoCFormatoCO10) ? ptsJuradoCFormatoCO10 : [];
     }
     get ptsFormatoCO5(): number[]{
         return this._ptsFormatoCO5;
     }
-    set ptsFormatoCO51(ptsFormatoCO51: number[]){
-        this._ptsFormatoCO51 = ptsFormatoCO51;
-    }
     get ptsFormatoCO51(): number[]{
         return this._ptsFormatoCO51;
-    }
-    set ptsFormatoCO52(ptsFormatoCO52: number[]){
-        this._ptsFormatoCO52 = ptsFormatoCO52;
-    }
-    get ptsFormatoCO52(): number[]{
+    }    get ptsFormatoCO52(): number[]{
         return this._ptsFormatoCO52;
-    }
-    set ptsFormatoCO53(ptsFormatoCO53: number[]){
-        this._ptsFormatoCO53 = ptsFormatoCO53;
     }
     get ptsFormatoCO53(): number[]{
         return this._ptsFormatoCO53;
@@ -74,20 +88,11 @@ export default class Cl_mAspirante{
     get notaExamenPracticoCO8(): number{
         return this._notaExamenPracticoCO8;
     }
-    set ptsJuradoAFormatoCO10(ptsJuradoAFormatoCO10: number[]){
-        this._ptsJuradoAFormatoCO10 = ptsJuradoAFormatoCO10;
-    }
     get ptsJuradoAFormatoCO10(): number[]{
         return this._ptsJuradoAFormatoCO10;
     }
-    set ptsJuradoBFormatoCO10(ptsJuradoBFormatoCO10: number[]){
-        this._ptsJuradoBFormatoCO10 = ptsJuradoBFormatoCO10;
-    }
     get ptsJuradoBFormatoCO10(): number[]{
         return this._ptsJuradoBFormatoCO10;
-    }
-    set ptsJuradoCFormatoCO10(ptsJuradoCFormatoCO10: number[]){
-        this._ptsJuradoCFormatoCO10 = ptsJuradoCFormatoCO10;
     }
     get ptsJuradoCFormatoCO10(): number[]{
         return this._ptsJuradoCFormatoCO10;

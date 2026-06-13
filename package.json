@@ -1,10 +1,13 @@
 {
-  "name": "sistema-concurso",
+  "name": "concurso-aspirantes",
   "version": "1.0.0",
-  "type": "module",
+  "description": "Sistema de gestión de concurso de aspirantes",
+  "main": "index.html",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
+  "dependencies": {},
   "devDependencies": {
     "typescript": "^6.0.3"
   }

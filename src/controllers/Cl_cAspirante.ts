@@ -7,7 +7,6 @@ export default class Cl_cAspirante{
     private callback!: (aspirante: Cl_mAspirante | null) => void;
     private editandoId: string | null = null;    
     private aspiranteOriginal: any = null;          
-
     constructor(vista: I_vAspirante){
         this.vista = vista;
         this.vista.onAceptar(() => this.btAceptarOnClick());
@@ -54,7 +53,6 @@ export default class Cl_cAspirante{
         aspirante.ptsJuradoAFormatoCO10 = this.vista.ptsJuradoAFormatoCO10;
         aspirante.ptsJuradoBFormatoCO10 = this.vista.ptsJuradoBFormatoCO10;
         aspirante.ptsJuradoCFormatoCO10 = this.vista.ptsJuradoCFormatoCO10;
-
         if (this.editandoId) {
             const resultado = await Cl_sAspirante.actualizarAspirante(aspirante, this.editandoId);
             alert(resultado.mensaje);
@@ -81,7 +79,6 @@ export default class Cl_cAspirante{
         this.editandoId = null;
         this.aspiranteOriginal = null;
     }
-
     private btCancelarOnClick(): void{
         this.callback(null);
         this.vista.ocultar();
