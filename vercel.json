@@ -4,7 +4,6 @@
   "installCommand": "npm install",
   "devCommand": "",
   "framework": null,
-  "public": true,
   "rewrites": [
     {
       "source": "/(.*)",
