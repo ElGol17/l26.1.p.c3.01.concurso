@@ -4,6 +4,8 @@ export interface I_vAspirantes{
     get soloAprobados(): boolean
     get solo25CO5(): boolean
     get soloNoEvaluadosAptitudes(): boolean
+    get textoBusqueda(): string
+    onChangeBusqueda(callback: () => void): void
     onChangeSoloAprobados(callback: () => void): void
     onChangeSolo25CO5(callback: () => void): void
     onChangeSoloNoEvaluadosAptitudes(callback: () => void): void

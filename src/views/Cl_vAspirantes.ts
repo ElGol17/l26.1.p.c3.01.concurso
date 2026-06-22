@@ -11,6 +11,7 @@ export default class Cl_vAspirantes implements I_vAspirantes{
     chkSoloNoEvaluadosAptitudes: HTMLInputElement;
     tblAspirantes: HTMLTableElement;
     cntReportes: HTMLDivElement;
+    inBusqueda: HTMLInputElement;
     constructor(){
         this.ui = document.getElementById("aspirantes") as HTMLDivElement;
         this.btRecargar = document.getElementById("aspirantes_btRecargar") as HTMLButtonElement;
@@ -21,6 +22,7 @@ export default class Cl_vAspirantes implements I_vAspirantes{
         this.tblAspirantes = document.getElementById("aspirantes_tblAspirantes") as HTMLTableElement;
         this.cntReportes = document.getElementById("aspirantes_cntReportes") as HTMLDivElement;
         this.chkSoloAprobados.onchange = () => this.onChangeSoloAprobados(() => {});
+        this.inBusqueda = document.getElementById("aspirantes_inBusqueda") as HTMLInputElement;
     }
     get soloAprobados(): boolean{ 
         return this.chkSoloAprobados.checked; 
@@ -31,6 +33,9 @@ export default class Cl_vAspirantes implements I_vAspirantes{
     get soloNoEvaluadosAptitudes(): boolean{
         return this.chkSoloNoEvaluadosAptitudes.checked;
     }
+    get textoBusqueda(): string {
+        return this.inBusqueda.value.toLowerCase().trim();
+    }
     onChangeSoloAprobados(callback: () => void): void{ 
         this.chkSoloAprobados.onchange = callback;
     }
@@ -39,6 +44,9 @@ export default class Cl_vAspirantes implements I_vAspirantes{
     }
     onChangeSoloNoEvaluadosAptitudes(callback: () => void): void{
         this.chkSoloNoEvaluadosAptitudes.onchange = callback;
+    }
+    onChangeBusqueda(callback: () => void): void {
+        this.inBusqueda.oninput = callback;
     }
     deshabilitarChkSoloAprobados(): void{
         this.chkSoloAprobados.disabled = true;
@@ -168,7 +176,7 @@ export default class Cl_vAspirantes implements I_vAspirantes{
         }
         contenedorReportes.innerHTML = `<h2 class="text fw-bold mb-4">Expedientes Detallados</h2>` + htmlReportesDetallados;
     }
-    mostrarPorcentajeGeneral(porcentaje: number): void {
+    mostrarEstadisticasGenerales({porcentajeCalificacion, porcentajeAprobados, calificacionMayor, calificacionMenor} : {porcentajeCalificacion: number, porcentajeAprobados: number, calificacionMayor: number, calificacionMenor: number}): void {
         let contenedorEstadisticas = document.getElementById("aspirantes_prct");
         if (!contenedorEstadisticas) {
             contenedorEstadisticas = document.createElement("div");
@@ -181,7 +189,10 @@ export default class Cl_vAspirantes implements I_vAspirantes{
         contenedorEstadisticas.innerHTML = `
             <div class="me-3 fs-2"></div>
             <div>
-                <span class="fs-6 text-dark">Porcentaje de Calificación de todos los Aspirantes: <strong>${porcentaje.toFixed(2)}%</strong></span>
+                <span class="fs-6 text-dark">Porcentaje de Calificación de todos los Aspirantes: <strong>${porcentajeCalificacion.toFixed(2)}%</strong></span>
+                <span class="fs-6 text-dark">Porcentaje de Aprobados: <strong>${porcentajeAprobados.toFixed(2)}%</strong></span>
+                <span class="fs-6 text-dark">Calificación Mayor: <strong>${calificacionMayor.toFixed(2)}%</strong></span>
+                <span class="fs-6 text-dark">Calificación Menor: <strong>${calificacionMenor.toFixed(2)}%</strong></span>
             </div>
         `;
     }
