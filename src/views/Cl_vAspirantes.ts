@@ -95,72 +95,78 @@ export default class Cl_vAspirantes implements I_vAspirantes{
             tbody.appendChild(fila);
             htmlReportesDetallados += html`
                 <div class="card shadow-sm border-dark mb-5">
-                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center p-3">
+                    <div class="card-header bg-dark text-white d-flex flex-wrap justify-content-between align-items-center p-3">
                         <h4 class="mb-0 fw-bold">Perfil: ${aspirante.nombreCompleto()}</h4>
                         <span class="fs-5">C.I: ${aspirante.cedula}</span>
                     </div>
-                    <div class="card-body p-4">
+                    <div class="card-body p-3 p-md-4">
                         <h6 class="fw-bold text-primary border-bottom pb-2">Formato N° CO-6 — Resumen de Valoración de Credenciales</h6>
-                        <table class="table table-bordered table-sm text-center align-middle mb-4">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>I. Postgrado</th>
-                                    <th>II. Pregrado</th>
-                                    <th>III. Prod. Científica</th>
-                                    <th>IV. Méritos y Exp.</th>
-                                    <th class="table-secondary">Total Obtenido</th>
-                                    <th class="table-primary">Calificación Final(0-20)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>${aspirante.calificacionFormatoCO5().toFixed(2)}</td>
-                                    <td>${aspirante.calificacionFormatoCO51().toFixed(2)}</td>
-                                    <td>${aspirante.calificacionFormatoCO52().toFixed(2)}</td>
-                                    <td>${aspirante.calificacionFormatoCO53().toFixed(2)}</td>
-                                    <td class="fw-bold">${aspirante.totalObtenidoCO6()}</td>
-                                    <td class="fw-bold">${aspirante.calificacionFinalCO6().toFixed(2)}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm text-center align-middle mb-4">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>I. Postgrado</th>
+                                        <th>II. Pregrado</th>
+                                        <th>III. Prod. Científica</th>
+                                        <th>IV. Méritos y Exp.</th>
+                                        <th class="table-secondary">Total Obtenido</th>
+                                        <th class="table-primary">Calificación Final(0-20)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>${aspirante.calificacionFormatoCO5().toFixed(2)}</td>
+                                        <td>${aspirante.calificacionFormatoCO51().toFixed(2)}</td>
+                                        <td>${aspirante.calificacionFormatoCO52().toFixed(2)}</td>
+                                        <td>${aspirante.calificacionFormatoCO53().toFixed(2)}</td>
+                                        <td class="fw-bold">${aspirante.totalObtenidoCO6()}</td>
+                                        <td class="fw-bold">${aspirante.calificacionFinalCO6().toFixed(2)}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-12 col-md-6 mb-3 mb-md-0">
                                 <h6 class="fw-bold text-primary border-bottom pb-2">Formato N° CO-8 — Conocimientos</h6>
-                                <table class="table table-bordered table-sm text-center align-middle">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Escrito (0-20)</th>
-                                            <th>Práctico (0-20)</th>
-                                            <th>Calificación Obtenida (Suma de Porcentajes)</th>
-                                            <th class="table-primary">60% de Calificación Obtenida</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>${aspirante.notaExamenEscritoCO8}</td>
-                                            <td>${aspirante.notaExamenPracticoCO8}</td>
-                                            <td>${(aspirante.notaExamenEscritoCO8 + aspirante.notaExamenPracticoCO8)*0.5}</td>
-                                            <td class="fw-bold">${aspirante.notaPruebaConocimientos().toFixed(2)}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm text-center align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Escrito (0-20)</th>
+                                                <th>Práctico (0-20)</th>
+                                                <th>Calificación Obtenida (Suma de Porcentajes)</th>
+                                                <th class="table-primary">60% de Calificación Obtenida</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>${aspirante.notaExamenEscritoCO8}</td>
+                                                <td>${aspirante.notaExamenPracticoCO8}</td>
+                                                <td>${(aspirante.notaExamenEscritoCO8 + aspirante.notaExamenPracticoCO8)*0.5}</td>
+                                                <td class="fw-bold">${aspirante.notaPruebaConocimientos().toFixed(2)}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-12 col-md-6">
                                 <h6 class="fw-bold text-primary border-bottom pb-2">Formato N° CO-9 — Aptitudes</h6>
-                                <table class="table table-bordered table-sm text-center align-middle">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Calificación Obtenida</th>
-                                            <th class="table-primary">30% de la Calificación Obtenida (0-20)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>${aspirante.calificacionFinalCO9().toFixed(2)}</td>
-                                            <td class="fw-bold">${aspirante.notaPruebaAptitudes().toFixed(2)}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm text-center align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Calificación Obtenida</th>
+                                                <th class="table-primary">30% de la Calificación Obtenida (0-20)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>${aspirante.calificacionFinalCO9().toFixed(2)}</td>
+                                                <td class="fw-bold">${aspirante.notaPruebaAptitudes().toFixed(2)}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -171,7 +177,7 @@ export default class Cl_vAspirantes implements I_vAspirantes{
         if (!contenedorReportes) {
             contenedorReportes = document.createElement("div");
             contenedorReportes.id = "detalles_aspirantes";
-            contenedorReportes.className = "mt-5 border-top pt-4";
+            contenedorReportes.className = "mt-5 border-top pt-4 px-2 px-md-4";
             this.ui.appendChild(contenedorReportes);
         }
         contenedorReportes.innerHTML = `<h2 class="text fw-bold mb-4">Expedientes Detallados</h2>` + htmlReportesDetallados;
@@ -181,18 +187,18 @@ export default class Cl_vAspirantes implements I_vAspirantes{
         if (!contenedorEstadisticas) {
             contenedorEstadisticas = document.createElement("div");
             contenedorEstadisticas.id = "estadisticas_generales";
-            contenedorEstadisticas.className = "alert alert-primary d-flex align-items-center mb-4 shadow-sm border-0";
+            contenedorEstadisticas.className = "alert alert-primary d-flex flex-wrap align-items-center mb-4 shadow-sm border-0";
             if (this.tblAspirantes && this.tblAspirantes.parentElement) {
                 this.tblAspirantes.parentElement.before(contenedorEstadisticas);
             }
         }
         contenedorEstadisticas.innerHTML = `
             <div class="me-3 fs-2"></div>
-            <div>
+            <div class="d-flex flex-wrap gap-3">
                 <span class="fs-6 text-dark">Porcentaje de Calificación de todos los Aspirantes: <strong>${porcentajeCalificacion.toFixed(2)}%</strong></span>
                 <span class="fs-6 text-dark">Porcentaje de Aprobados: <strong>${porcentajeAprobados.toFixed(2)}%</strong></span>
-                <span class="fs-6 text-dark">Calificación Mayor: <strong>${calificacionMayor.toFixed(2)}%</strong></span>
-                <span class="fs-6 text-dark">Calificación Menor: <strong>${calificacionMenor.toFixed(2)}%</strong></span>
+                <span class="fs-6 text-dark">Calificación Mayor: <strong>${calificacionMayor.toFixed(2)}</strong></span>
+                <span class="fs-6 text-dark">Calificación Menor: <strong>${calificacionMenor.toFixed(2)}</strong></span>
             </div>
         `;
     }

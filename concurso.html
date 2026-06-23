@@ -8,19 +8,25 @@
     <style>
         .tabla-aspirantes { width: 90%; margin: 0 auto; }
         .main-container { background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        @media (max-width: 576px) {
+            .form-check-label { font-size: 0.9rem; }
+            .card-body { padding: 0.5rem !important; }
+            .table-sm td, .table-sm th { font-size: 0.75rem; padding: 0.3rem; }
+        }
     </style>
 </head>
 <body>
     <div id="main" class="p-4">
         <section id="concurso">
-            <div class="main-header d-flex justify-content-between align-items-center py-4 px-4">                 
+            <div class="main-header d-flex justify-content-between align-items-center py-4 px-4 flex-wrap gap-3">                 
                 <div class="d-flex flex-column gap-3">
-                    <div>
+                    <div >
                         <h2 class="mb-0 fw-bold">Vista Directiva</h2>    
                         <h5 class="mb-0 fw-bold">Concurso - Global Innovators Corp.</h5>
                     </div>
-                    <div>
+                    <div class="d-flex flex-wrap gap-2">
                         <button id="concurso_btMostrarAspirantes" class="btn btn-primary text-white btn-lg ms-2">Ver Lista de Aspirantes</button>
+                        <button onclick="window.location.href='https://l26-1-p-c3-01-concurso-administrati.vercel.app/';" class="btn btn-success text-white btn-lg ms-2">Ir a Vista Administrativa</button>
                     </div>
                 </div>
                 <div>
@@ -30,44 +36,36 @@
             </section>
 
         <section id="aspirantes" hidden class="main-container p-4 mt-4">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
                 <h2 class="fw-bold">Resumen de Aspirantes</h2>
                 <button id="aspirantes_btVolver" class="btn btn-outline-secondary">Volver al Inicio</button>
             </div>
-            <div id="estadisticas_generales" class="alert alert-primary d-flex align-items-center mb-4 shadow-sm border-0">
-                    <div>
-                        <h5 class="mb-0 fw-bold text-primary-emphasis">Rendimiento Global del Concurso</h5>
-                        <span class="fs-6 text-dark">El porcentaje general de calificación es: <strong id="txtPorcentaje">0.00%</strong></span>
+            <div id="estadisticas_generales" class="alert alert-primary d-flex flex-wrap align-items-center mb-4 shadow-sm border-0">
+                    <div class="d-flex flex-wrap gap-3">
+                        <span class="fs-6 text-dark">Porcentaje General: <strong id="txtPorcentaje">0.00%</strong></span>
+                        <span class="fs-6 text-dark">Aprobados: <strong id="txtPorcentajeAprobados">0.00%</strong></span>
+                        <span class="fs-6 text-dark">Mayor: <strong id="txtCalificacionMayor">0.00</strong></span>
+                        <span class="fs-6 text-dark">Menor: <strong id="txtCalificacionMenor">0.00</strong></span>
                     </div>
                 </div>
-            <div class="row align-items-center mb-4 g-3">
-                <div class="col-auto">
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                <div class="d-flex flex-wrap gap-3">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="aspirantes_chkSoloAprobados">
                         <label class="form-check-label" for="aspirantes_chkSoloAprobados">Solo Aprobados</label>
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="aspirantes_chkSolo25CO5">
-                        <label class="form-check-label" for="aspirantes_chkSolo25CO5">Solo Aspirantes +25 en Formato N° CO-5</label>
+                        <label class="form-check-label" for="aspirantes_chkSolo25CO5">Solo +25 en CO-5</label>
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="aspirantes_chkSoloNoEvaluadosAptitudes">
-                        <label class="form-check-label" for="aspirantes_chkSoloNoEvaluadosAptitudes">Solo No Evaluados en Aptitudes</label>
+                        <label class="form-check-label" for="aspirantes_chkSoloNoEvaluadosAptitudes">No evaluados en Aptitudes</label>
                     </div>
-                </div>             
-                <div class="col-auto">
-                    <input
-                        type="text"
-                        id="aspirantes_inBusqueda"
-                        class="form-control"
-                        placeholder="Buscar por nombre o cédula..."
-                    >
                 </div>
-                <div class="col-auto d-flex gap-2">
-                    <button id="aspirantes_btRecargar" class="btn btn-primary">Recargar Datos</button>
-                </div>
-                <div class="col-auto d-flex gap-2">
-                    <button onclick="window.location.href='https://l26-1-p-c3-01-concurso-administrati.vercel.app/';" class="btn btn-secondary">Ir a Vista Administrativa</button>
+                <div class="d-flex flex-wrap gap-2">
+                    <input type="text" id="aspirantes_inBusqueda" class="form-control" placeholder="Buscar..." style="max-width: 200px;">
+                    <button id="aspirantes_btRecargar" class="btn btn-primary">Recargar</button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -87,7 +85,7 @@
                         </tbody>
                 </table>
             </div>
-            <div id="aspirantes_cntReportes" class="mt-5 border-top pt-4"></div>
+            <div id="aspirantes_cntReportes" class="mt-5 border-top pt-4 px-2 px-md-4"></div>
         </section>
     </div>
 
