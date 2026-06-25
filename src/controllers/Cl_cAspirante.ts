@@ -43,6 +43,7 @@ export default class Cl_cAspirante{
             nombre: this.vista.nombre,
             apellido: this.vista.apellido,
             cedula: this.vista.cedula,
+            fechaRegistro: this.vista.fechaRegistro,
             notaExamenEscritoCO8: this.vista.notaExamenEscritoCO8,
             notaExamenPracticoCO8: this.vista.notaExamenPracticoCO8,
         });

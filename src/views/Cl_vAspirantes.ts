@@ -9,6 +9,7 @@ export default class Cl_vAspirantes implements I_vAspirantes{
     chkSoloAprobados: HTMLInputElement;
     chkSolo25CO5: HTMLInputElement;
     chkSoloNoEvaluadosAptitudes: HTMLInputElement;
+    chkSoloMayorUnaSemana: HTMLInputElement;
     tblAspirantes: HTMLTableElement;
     cntReportes: HTMLDivElement;
     inBusqueda: HTMLInputElement;
@@ -19,6 +20,7 @@ export default class Cl_vAspirantes implements I_vAspirantes{
         this.chkSoloAprobados = document.getElementById("aspirantes_chkSoloAprobados") as HTMLInputElement;
         this.chkSolo25CO5 = document.getElementById("aspirantes_chkSolo25CO5") as HTMLInputElement;
         this.chkSoloNoEvaluadosAptitudes = document.getElementById("aspirantes_chkSoloNoEvaluadosAptitudes") as HTMLInputElement;
+        this.chkSoloMayorUnaSemana = document.getElementById("aspirantes_chkSoloMayorUnaSemana") as HTMLInputElement;
         this.tblAspirantes = document.getElementById("aspirantes_tblAspirantes") as HTMLTableElement;
         this.cntReportes = document.getElementById("aspirantes_cntReportes") as HTMLDivElement;
         this.chkSoloAprobados.onchange = () => this.onChangeSoloAprobados(() => {});
@@ -33,6 +35,9 @@ export default class Cl_vAspirantes implements I_vAspirantes{
     get soloNoEvaluadosAptitudes(): boolean{
         return this.chkSoloNoEvaluadosAptitudes.checked;
     }
+    get soloMayorUnaSemana(): boolean{
+        return this.chkSoloMayorUnaSemana.checked;
+    }
     get textoBusqueda(): string {
         return this.inBusqueda.value.toLowerCase().trim();
     }
@@ -44,6 +49,9 @@ export default class Cl_vAspirantes implements I_vAspirantes{
     }
     onChangeSoloNoEvaluadosAptitudes(callback: () => void): void{
         this.chkSoloNoEvaluadosAptitudes.onchange = callback;
+    }
+    onChangeSoloMayorUnaSemana(callback: () => void): void{
+        this.chkSoloMayorUnaSemana.onchange = callback;
     }
     onChangeBusqueda(callback: () => void): void {
         this.inBusqueda.oninput = callback;
@@ -66,6 +74,12 @@ export default class Cl_vAspirantes implements I_vAspirantes{
     habilitarChkSoloNoEvaluadosAptitudes(): void{
         this.chkSoloNoEvaluadosAptitudes.disabled = false;
     }
+    deshabilitarChkSoloMayorUnaSemana(): void{
+        this.chkSoloMayorUnaSemana.disabled = true;
+    }
+    habilitarChkSoloMayorUnaSemana(): void{
+        this.chkSoloMayorUnaSemana.disabled = false;
+    }
     onRecargar(callback: () => void): void{ 
         this.btRecargar.onclick = callback; 
     }
@@ -84,7 +98,8 @@ export default class Cl_vAspirantes implements I_vAspirantes{
             const fila = document.createElement("tr");
             const esAprobado = aspirante.veredicto() === 'Aprobado';
             fila.innerHTML = html`
-                <td class="text-start">${aspirante.nombreCompleto()}</td>
+                <td class="text-start">${aspirante.fechaRegistro.toLocaleDateString()}</td>
+                <td class="text-center">${aspirante.nombreCompleto()}</td>
                 <td class="text-center">${aspirante.cedula}</td>
                 <td class="text-center">${aspirante.notaPruebaCredenciales().toFixed(2)}</td>
                 <td class="text-center">${aspirante.notaPruebaConocimientos().toFixed(2)}</td>

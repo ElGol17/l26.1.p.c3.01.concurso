@@ -4,6 +4,7 @@ export interface I_vAspirante {
     get nombre(): string;
     get apellido(): string;
     get cedula(): number;
+    get fechaRegistro(): Date;
     get ptsFormatoCO5(): number[];
     get ptsFormatoCO51(): number[];
     get ptsFormatoCO52(): number[];

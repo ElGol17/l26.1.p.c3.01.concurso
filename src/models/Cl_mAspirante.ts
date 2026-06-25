@@ -3,6 +3,7 @@ export default class Cl_mAspirante{
     private _nombre: string;
     private _apellido: string;
     private _cedula: number;
+    private _fechaRegistro: Date = new Date();
     private _ptsFormatoCO5: number[] = [];
     private _ptsFormatoCO51: number[] = [];
     private _ptsFormatoCO52: number[] = [];
@@ -12,10 +13,11 @@ export default class Cl_mAspirante{
     private _ptsJuradoAFormatoCO10: number[] = [];
     private _ptsJuradoBFormatoCO10: number[] = [];
     private _ptsJuradoCFormatoCO10: number[] = [];
-    constructor({nombre, apellido, cedula, notaExamenEscritoCO8, notaExamenPracticoCO8}: {nombre: string, apellido: string, cedula: number, notaExamenEscritoCO8: number, notaExamenPracticoCO8: number}){
+    constructor({nombre, apellido, cedula, fechaRegistro, notaExamenEscritoCO8, notaExamenPracticoCO8}: {nombre: string, apellido: string, cedula: number, fechaRegistro?: Date, notaExamenEscritoCO8: number, notaExamenPracticoCO8: number}){
         this._nombre = nombre;
         this._apellido = apellido;
         this._cedula = cedula;
+        this._fechaRegistro = fechaRegistro || new Date();
         this._notaExamenEscritoCO8 = notaExamenEscritoCO8;
         this._notaExamenPracticoCO8 = notaExamenPracticoCO8;
     }
@@ -37,6 +39,12 @@ export default class Cl_mAspirante{
     }
     get cedula(): number{
         return this._cedula;
+    }
+    set fechaRegistro(fechaRegistro: Date){
+        this._fechaRegistro = fechaRegistro;
+    }
+    get fechaRegistro(): Date{
+        return this._fechaRegistro;
     }
     set ptsFormatoCO5(ptsFormatoCO5: number[] | undefined) {
         this._ptsFormatoCO5 = Array.isArray(ptsFormatoCO5) ? ptsFormatoCO5 : [];
@@ -167,6 +175,7 @@ export default class Cl_mAspirante{
             nombre: this._nombre,
             apellido: this._apellido,
             cedula: this._cedula,
+            fechaRegistro: this._fechaRegistro.toISOString(),
             ptsFormatoCO5: this._ptsFormatoCO5,
             ptsFormatoCO51: this._ptsFormatoCO51,
             ptsFormatoCO52: this._ptsFormatoCO52,

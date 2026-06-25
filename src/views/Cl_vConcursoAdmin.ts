@@ -19,7 +19,8 @@ export default class Cl_vConcursoAdmin implements I_vConcursoAdmin{
         aspirantes.forEach(aspirante =>{
             const fila = document.createElement("tr");
                 fila.innerHTML = html`
-                    <td class="text-start">${aspirante.nombreCompleto()}</td>
+                    <td class="text-start">${aspirante.fechaRegistro.toLocaleDateString()}</td>
+                    <td class="text-center">${aspirante.nombreCompleto()}</td>
                     <td class="text-center">${aspirante.cedula}</td>
                     <td class="text-center">${aspirante.notaPruebaCredenciales().toFixed(2)}</td>
                     <td class="text-center">${aspirante.notaPruebaConocimientos().toFixed(2)}</td>

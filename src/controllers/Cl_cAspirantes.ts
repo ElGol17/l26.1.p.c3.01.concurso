@@ -13,6 +13,7 @@ export default class Cl_cAspirantes {
         this.vista.onChangeSoloAprobados(() => this.onChangeSoloAprobados());
         this.vista.onChangeSolo25CO5(() => this.onChangeSolo25CO5());
         this.vista.onChangeSoloNoEvaluadosAptitudes(() => this.onChangeSoloNoEvaluadosAptitudes());
+        this.vista.onChangeSoloMayorUnaSemana(() => this.btRecargarOnClick());
         this.vista.onRecargar(() => this.btRecargarOnClick());
         this.vista.onVolver(() => this.onVolver());
         this.vista.onChangeBusqueda(() => this.btRecargarOnClick());
@@ -57,14 +58,13 @@ export default class Cl_cAspirantes {
         this.volverCallback();
     }
     async btRecargarOnClick(){
-    
         const resultado = await Cl_sAspirantes.getAspirantes();
         if (resultado.ok === false) {
             alert("Error: No se ha podido establecer conexión con el servidor.");
             return;
         }
         this.modelo.setAspirantes(resultado.data);
-        const listaAspirantes = this.modelo.getAspirantesFiltrados(this.vista.soloAprobados, this.vista.solo25CO5, this.vista.soloNoEvaluadosAptitudes, this.vista.textoBusqueda);
+        const listaAspirantes = this.modelo.getAspirantesFiltrados(this.vista.soloAprobados, this.vista.solo25CO5, this.vista.soloNoEvaluadosAptitudes, this.vista.soloMayorUnaSemana, this.vista.textoBusqueda);
         this.vista.mostrarAspirantes({ aspirantes: listaAspirantes });
         const txtPorcentaje = document.getElementById("txtPorcentaje");
         if (txtPorcentaje) {

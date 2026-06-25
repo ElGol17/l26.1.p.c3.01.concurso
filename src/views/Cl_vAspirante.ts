@@ -1,5 +1,4 @@
 import { I_vAspirante } from "../interfaces/I_vAspirante.js";
-import Cl_mAspirante from "../models/Cl_mAspirante.js";
 
 export default class Cl_vAspirante implements I_vAspirante{
     private vista: HTMLElement;
@@ -7,6 +6,7 @@ export default class Cl_vAspirante implements I_vAspirante{
     private inApellido: HTMLInputElement;
     private inCedula: HTMLInputElement;
     private inCedulaBuscar: HTMLInputElement;
+    private inFechaRegistro: HTMLInputElement;
     private inFormatoCO5: NodeListOf<HTMLInputElement>;
     private inFormatoCO51: NodeListOf<HTMLInputElement>;
     private inFormatoCO52: NodeListOf<HTMLInputElement>;
@@ -25,6 +25,7 @@ export default class Cl_vAspirante implements I_vAspirante{
         this.inNombre = document.getElementById("aspirante_inNombre") as HTMLInputElement;
         this.inApellido = document.getElementById("aspirante_inApellido") as HTMLInputElement;
         this.inCedula = document.getElementById("aspirante_inCedula") as HTMLInputElement;
+        this.inFechaRegistro = document.getElementById("aspirante_inFechaRegistro") as HTMLInputElement;
         this.inCedulaBuscar = document.getElementById("aspirante_inCedulaBuscar") as HTMLInputElement;
         this.inNotaExamenEscritoCO8 = document.getElementById("aspirante_inNotaExamenEscritoCO8") as HTMLInputElement;
         this.inNotaExamenPracticoCO8 = document.getElementById("aspirante_inNotaExamenPracticoCO8") as HTMLInputElement;
@@ -52,6 +53,10 @@ export default class Cl_vAspirante implements I_vAspirante{
     }
     get cedula(): number{
         return +this.inCedula.value;
+    }
+    get fechaRegistro(): Date{
+        const fecha = this.inFechaRegistro.value;
+        return fecha ? new Date(fecha + 'T00:00:00') : new Date();
     }
     get notaExamenEscritoCO8(): number{
         return +this.inNotaExamenEscritoCO8.value;
@@ -92,10 +97,21 @@ export default class Cl_vAspirante implements I_vAspirante{
     onCancelar(callback: () => void): void {
         this.btCancelar.onclick = callback;
     }
-    cargarDatos(aspirante: Cl_mAspirante): void {
+    cargarDatos(aspirante: any): void {
         this.inNombre.value = aspirante.nombre || "";
         this.inApellido.value = aspirante.apellido || "";
-        this.inCedula.value = aspirante.cedula.toString() || "";
+        this.inCedula.value = aspirante.cedula?.toString() || "";
+
+        if (aspirante.fechaRegistro) {
+            const fecha = new Date(aspirante.fechaRegistro);
+            if (!isNaN(fecha.getTime())) {
+                const year = fecha.getFullYear();
+                const month = String(fecha.getMonth() + 1).padStart(2, '0');
+                const day = String(fecha.getDate()).padStart(2, '0');
+                this.inFechaRegistro.value = `${year}-${month}-${day}`;
+            }
+        }
+
         this.inNotaExamenEscritoCO8.value = aspirante.notaExamenEscritoCO8?.toString() || "";
         this.inNotaExamenPracticoCO8.value = aspirante.notaExamenPracticoCO8?.toString() || "";
 
@@ -139,6 +155,7 @@ export default class Cl_vAspirante implements I_vAspirante{
         this.inNombre.value = "";
         this.inApellido.value = "";
         this.inCedula.value = "";
+        this.inFechaRegistro.value = "";
         this.inCedulaBuscar.value = "";
         this.inNotaExamenEscritoCO8.value = "";
         this.inNotaExamenPracticoCO8.value = "";

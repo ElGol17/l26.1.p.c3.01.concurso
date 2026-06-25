@@ -11,6 +11,7 @@ export default class Cl_mAspirantes{
                 nombre: aspirante.nombre,
                 apellido: aspirante.apellido,
                 cedula: aspirante.cedula,
+                fechaRegistro: new Date(aspirante.fechaRegistro),
                 notaExamenEscritoCO8: aspirante.notaExamenEscritoCO8,
                 notaExamenPracticoCO8: aspirante.notaExamenPracticoCO8,
             })
@@ -44,7 +45,7 @@ export default class Cl_mAspirantes{
         }
     return aspirantesFiltrados;
     }
-    getAspirantesFiltrados(soloAprobados: boolean = false, solo25CO5: boolean = false, soloNoEvaluadosAptitudes: boolean = false, textoBusqueda: string = ""): Cl_mAspirante[]{
+    getAspirantesFiltrados(soloAprobados: boolean = false, solo25CO5: boolean = false, soloNoEvaluadosAptitudes: boolean = false, soloMayorUnaSemana: boolean = false, textoBusqueda: string = ""): Cl_mAspirante[]{
         let aspirantesFiltrados: Cl_mAspirante[] = [];
         switch (true){
             case soloAprobados:
@@ -70,6 +71,10 @@ export default class Cl_mAspirantes{
                 break;
             case (!soloAprobados && !solo25CO5 && !soloNoEvaluadosAptitudes):
                 aspirantesFiltrados = this.aspirantes;
+        }
+        if (soloMayorUnaSemana === true){
+            const haceUnaSemana = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+            aspirantesFiltrados = aspirantesFiltrados.filter(a => a.fechaRegistro < haceUnaSemana);
         }
         if (textoBusqueda !== "") {
             aspirantesFiltrados = aspirantesFiltrados.filter(aspirante =>
